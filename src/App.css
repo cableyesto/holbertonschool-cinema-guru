@@ -1,0 +1,15 @@
+/* Reset default spacing for all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Makes width/padding calculations easier */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #222222; /* Dark background */
+  /* font-family: Arial, Helvetica, sans-serif; */
+  color: #ffffff;
+  height: 100vh;
+}
