@@ -12,7 +12,6 @@ function Authentication({ setIsLoggedIn, setUserUsername }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('here')
     try {
       let response;
 

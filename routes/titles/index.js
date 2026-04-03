@@ -10,7 +10,8 @@ router.use('/', userTitlesRouter)
 const PAGE_SIZE = 10;
 router.get('/advancedsearch', verifyToken, async (req, res) => {
     const maxYear = parseInt(req.query.maxYear)
-    const minYear = parseInt(req.query.maxYear)
+    // const minYear = parseInt(req.query.maxYear)
+    const minYear = parseInt(req.query.minYear)
     const genre = req.query.genres ? req.query.genres.split(',').map(genre => genre.charAt(0).toUpperCase() + genre.slice(1)) : []
     const params = {
         maxYear: isNaN(maxYear) ? 2022 : maxYear,

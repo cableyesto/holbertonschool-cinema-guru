@@ -1,0 +1,73 @@
+/* Dashboard container fills the screen */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+/* Leave space for fixed header */
+.dashboard-body {
+  display: flex;
+  flex: 1;
+  margin-top: 62px; /* same as nav-header height */
+  height: calc(100vh - 62px); /* fill remaining height */
+  background-color: #f5f5f5;
+}
+
+/* Sidebar on the left */
+.sidebar {
+  width: 60px; /* collapsed width */
+  background-color: #BB000E;
+  color: #fff;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+}
+
+.sidebar.expanded {
+  width: 240px; /* expanded width */
+}
+
+/* Sidebar navigation items */
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav li {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.sidebar-nav li:hover,
+.sidebar-nav li.active {
+  background-color: #E31C25;
+}
+
+.sidebar-nav li .text {
+  margin-left: 12px;
+  white-space: nowrap;
+}
+
+/* Activities list inside sidebar */
+.sidebar-activities {
+  list-style: none;
+  padding-left: 10px;
+  margin-top: 20px;
+  overflow-y: auto;
+  max-height: calc(100% - 200px); /* optional, leave space for nav items */
+}
+
+/* Main content area */
+.dashboard-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #f0f2f5;
+}

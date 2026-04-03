@@ -50,3 +50,32 @@
 .nav-logout:hover {
   opacity: 0.8;
 }
+
+/** SideBar **/
+.sidebar {
+  width: 60px;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  height: auto;
+}
+
+.sidebar.expanded {
+  width: 240px;
+}
+
+.sidebar-nav li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sidebar-nav li .text {
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
+.sidebar-activities {
+  margin-top: 20px;
+  padding-left: 10px;
+}
