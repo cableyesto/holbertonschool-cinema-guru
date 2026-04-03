@@ -5,11 +5,18 @@
   box-sizing: border-box; /* Makes width/padding calculations easier */
 }
 
-html, body {
+body {
   margin: 0;
   padding: 0;
   background-color: #222222; /* Dark background */
-  /* font-family: Arial, Helvetica, sans-serif; */
-  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
   height: 100vh;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

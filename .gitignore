@@ -23,4 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 
+.env/
+
 src/AppTest*
+index[0-9]*.html
+generated/
+
+CLAUDE.md

@@ -39,7 +39,10 @@ function App() {
   return isLoggedIn ? (
     <Dashboard username={userUsername} />
   ) : (
-    <Authentication />
+    <Authentication
+      setIsLoggedIn={setIsLoggedIn}
+      setUserUsername={setUserUsername}
+    />
   );
 }
 

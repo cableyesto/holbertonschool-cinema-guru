@@ -44,8 +44,9 @@ select.input-field option {
   transition: background-color 0.3s ease; /* Smooth transition */
 }
 
+.button.active,
 .button:hover {
-  background-color: #E31C25; /* Slightly lighter on hover */
+  background-color: #E31C25; 
 }
 
 
