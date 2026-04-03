@@ -1,0 +1,52 @@
+.nav-header {
+  display: flex;
+  align-items: center;
+  background-color: #161616;
+  height: 62px;
+  padding: 0 33px;
+  gap: 20px;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.nav-header > div:first-child {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 400;
+  margin-right: auto;
+}
+
+.nav-avatar {
+  width: 43px;
+  height: 41px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: auto;
+}
+
+.nav-welcome {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.nav-logout {
+  color: #bb000e;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.nav-logout:hover {
+  opacity: 0.8;
+}
