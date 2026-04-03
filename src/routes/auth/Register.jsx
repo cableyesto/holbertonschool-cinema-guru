@@ -9,7 +9,6 @@ function Register({ username, password, setUsername, setPassword }) {
     <>
       <div className='auth-body'>
         <h4>Create a new account</h4>
-        <form className="auth-form">
           <Input
             label="Username"
             type="text"
@@ -28,9 +27,9 @@ function Register({ username, password, setUsername, setPassword }) {
             <Button
               label="Sign Up"
               icon={<FontAwesomeIcon icon={faPlus} />}
+              type="submit"
             />
           </div>
-        </form>
       </div>
     </>
   )

@@ -9,7 +9,6 @@ function Login({ username, password, setUsername, setPassword }) {
     <>
       <div className='auth-body'>
         <h4>Sign in with your account</h4>
-        <form className="auth-form">
           <Input
             label="Username"
             type="text"
@@ -28,9 +27,9 @@ function Login({ username, password, setUsername, setPassword }) {
             <Button
               label="Sign In"
               icon={<FontAwesomeIcon icon={faKey} />}
+              type="submit"
             />
           </div>
-        </form>
       </div>
     </>
   )
