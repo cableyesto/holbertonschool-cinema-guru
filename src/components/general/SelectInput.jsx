@@ -8,7 +8,7 @@ function SelectInput({ label, options = [], className = '', value, setValue }) {
   return (
     <div className={`input-wrapper ${className}`}>
       <div className='select-input-label-container'>
-        {label && <label className="input-label">{label}:</label>}
+        {label && <label className="input-label">{label} :</label>}
       </div>
       <select
         value={value}

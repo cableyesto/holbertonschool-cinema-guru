@@ -1,6 +1,6 @@
-import "./dashboard.css";
 import Header from "../../components/navigation/Header";
 import SideBar from "../../components/navigation/SideBar";
+import "./dashboard.css";
 
 import {
   BrowserRouter,

@@ -1,0 +1,57 @@
+/** Tag **/
+/* Default tag style (pill shape) */
+.tag-item {
+  display: inline-block;
+  padding: 6px 16px;
+  margin: 4px;
+  border: 2px solid #E31C25;
+  border-radius: 50px; /* pill shape */
+  cursor: pointer; /* pointer on hover */
+  font-weight: 500;
+  color: white;
+  transition: all 0.2s ease-in-out;
+  list-style: none;
+}
+
+/* Selected tag style */
+.tag-item.selected {
+  background-color: #E31C25;
+  color: white;
+  border-color: #E31C25;
+}
+
+/** Filter **/
+/* Overall container: flex two-column */
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px; /* spacing between left and right */
+  margin-left: 49px;
+  margin-top: 30px;
+}
+
+/* Left side: can set width */
+.filter-left {
+  flex: 0 0 200px; /* fixed width or adjust as needed */
+}
+
+/* Right side: tags list */
+.filter-right {
+  flex: 1; /* take remaining space */
+  max-width: 506px;
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.year-filters {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}

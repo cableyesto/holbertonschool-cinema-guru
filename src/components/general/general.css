@@ -5,6 +5,10 @@
   gap: 8px; /* spacing between icon and label */
 }
 
+.input-label {
+  color: #ffffff;
+}
+
 .input-field {
   border: none;              /* remove all borders */
   border-bottom: 1px solid #BB000E;  /* only bottom border */
@@ -12,6 +16,7 @@
   padding: 4px 0;            /* minimal vertical padding */
   font-size: 16px;
   background: transparent;    /* remove default background */
+  color: #ffffff;
 }
 
 /** Select Input **/

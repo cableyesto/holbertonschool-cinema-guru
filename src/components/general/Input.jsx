@@ -9,7 +9,7 @@ function Input({ label, type, className, value, setValue, icon=null, inputAttrib
     <div className={`input-wrapper ${className || ''}`}>
       <div className="input-label-container">
         {icon && <span className="input-icon">{icon}</span>}
-        {label && <label className="input-label">{label}:</label>}
+        {label && <label className="input-label">{label} :</label>}
       </div>
       <input
         type={type}
