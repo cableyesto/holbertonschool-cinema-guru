@@ -27,9 +27,9 @@ function Authentication({ setIsLoggedIn, setUserUsername }) {
         });
       }
 
-      const token = response.data.token;
+      const accessToken = response.data.accessToken;
 
-      localStorage.setItem("token", token);
+      localStorage.setItem("accessToken", accessToken);
       setUserUsername(username);
       setIsLoggedIn(true);
     } catch (error) {

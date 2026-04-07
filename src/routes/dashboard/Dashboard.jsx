@@ -24,13 +24,11 @@ function Dashboard({ userUsername, setIsLoggedIn }) {
 
         <div className="dashboard-body">
           <SideBar />
-
           <div className="dashboard-content">
             <Routes>
               <Route path="/home" element={<HomePage />} />
               <Route path="/favorites" element={<Favorites />} />
               <Route path="/watchlater" element={<WatchLater />} />
-
               {/* Redirect all unknown routes */}
               <Route path="*" element={<Navigate to="/home" />} />
             </Routes>

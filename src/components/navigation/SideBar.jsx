@@ -26,7 +26,13 @@ function SideBar() {
   useEffect(() => {
     const fetchActivities = async () => {
       try {
-        const response = await axios.get("/api/activity");
+        const accessToken = localStorage.getItem("accessToken");
+
+        const response = await axios.get("/api/activity", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
         const data = response.data;
         if (Array.isArray(data)) setActivities(data);
         else if (Array.isArray(data.activities)) setActivities(data.activities);

@@ -16,7 +16,7 @@ function App() {
     const authenticateUser = async () => {
       try {
         const response = await axios.post(
-          "/api/auth/",
+          "/api/auth/login",
           {}, // Empty body for POST
           {
             headers: {
@@ -37,7 +37,10 @@ function App() {
   }, []);
 
   return isLoggedIn ? (
-    <Dashboard username={userUsername} />
+    <Dashboard
+      userUsername={userUsername}
+      setIsLoggedIn={setIsLoggedIn}
+    />
   ) : (
     <Authentication
       setIsLoggedIn={setIsLoggedIn}
