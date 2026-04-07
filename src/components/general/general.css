@@ -9,6 +9,14 @@
   color: #ffffff;
 }
 
+.input-label.light-text {
+  color: #ffffff;
+}
+
+.input-label.dark-text {
+  color: #000000;
+}
+
 .input-field {
   border: none;              /* remove all borders */
   border-bottom: 1px solid #BB000E;  /* only bottom border */
@@ -17,6 +25,14 @@
   font-size: 16px;
   background: transparent;    /* remove default background */
   color: #ffffff;
+}
+
+.input-field.light-text {
+  color: #ffffff;
+}
+
+.input-field.dark-text {
+  color: #000000;
 }
 
 /** Select Input **/

@@ -15,6 +15,7 @@ function Login({ username, password, setUsername, setPassword }) {
             value={username}
             setValue={setUsername}
             icon={<FontAwesomeIcon icon={faUser} />}
+            lightText={false}
           />
           <Input
             label="Password"
@@ -22,6 +23,7 @@ function Login({ username, password, setUsername, setPassword }) {
             value={password}
             setValue={setPassword}
             icon={<FontAwesomeIcon icon={faKey} />}
+            lightText={false}
           />
           <div className='auth-form-button'>
             <Button

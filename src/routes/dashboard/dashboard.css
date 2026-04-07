@@ -2,7 +2,7 @@
 .dashboard-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   font-family: Arial, sans-serif;
 }
@@ -12,7 +12,7 @@
   display: flex;
   flex: 1;
   margin-top: 62px; /* same as nav-header height */
-  height: calc(100vh - 62px); /* fill remaining height */
+  /* min-height: calc(100vh - 62px); */
   background-color: #f5f5f5;
 }
 
@@ -23,7 +23,7 @@
   color: #fff;
   transition: width 0.3s ease;
   overflow: hidden;
-  height: 100%;
+  align-self: stretch;
   position: relative;
 }
 
@@ -71,4 +71,27 @@
   /* padding: 20px;
   overflow-y: auto;
   background-color: #f0f2f5; */
+}
+
+/**
+Movies Displayer
+HomePage
+Favorites
+WatchLater
+**/
+.movie-grid {
+  display: flex;
+  flex-wrap: wrap;          /* Allows multiple rows */
+  justify-content: flex-start; /* Align full rows to start */
+  gap: 20px;                /* Fixed gap between items */
+  max-width: calc(5 * 200px + 4 * 20px); /* 5 items * item width + 4 gaps */
+  margin: 0 auto;           /* Center the whole container horizontally */
+}
+
+.movie-grid li {
+  flex: 0 0 200px;          /* Fixed width for each MovieCard */
+}
+
+.movie-grid li:last-row {
+  justify-content: center;  /* Center the last row if it has fewer items */
 }

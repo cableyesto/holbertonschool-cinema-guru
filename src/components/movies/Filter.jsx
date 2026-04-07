@@ -42,19 +42,19 @@ function Filter({
             label="Min Year"
             type="number"
             value={minYear}
-            setValue={setMinYear} // pass the state setter
+            setValue={setMinYear}
           />
           <Input
             label="Max Year"
             type="number"
             value={maxYear}
-            setValue={setMaxYear} // pass the state setter
+            setValue={setMaxYear}
           />
           <SelectInput
             label="Sort"
-            options={["Default", "Latest", "Oldest", "Highest Rated", "Lowest Rated"]}
+            options={["Latest", "Oldest", "Highest Rated", "Lowest Rated"]}
             value={sort}
-            setValue={setSort} // pass the state setter
+            setValue={setSort}
           /> 
         </div>
       </div>
