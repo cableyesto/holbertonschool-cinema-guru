@@ -70,21 +70,24 @@ function SideBar() {
 
       {/* Activities */}
       {expanded && (
-        <ul className="sidebar-activities">
-          {Array.isArray(activities) &&
-            activities.slice(0, 10).map((activity, index) => (
-              <Activity
-                key={index}
-                username={activity.user?.username}
-                movieTitle={activity.title?.title}
-                date={new Date(activity.createdAt).toLocaleDateString("en-US", {
-                  month: "long",
-                  day: "2-digit",
-                  year: "numeric",
-                })}
-              />
-            ))}
-        </ul>
+        <div className="sidebar-activities-section">
+          <h3 className="activities-title">Latest Activities</h3>
+          <ul className="sidebar-activities">
+            {Array.isArray(activities) &&
+              activities.slice(0, 10).map((activity, index) => (
+                <Activity
+                  key={index}
+                  username={activity.user?.username}
+                  movieTitle={activity.title?.title}
+                  date={new Date(activity.createdAt).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "2-digit",
+                    year: "numeric",
+                  })}
+                />
+              ))}
+          </ul>
+        </div>
       )}
     </nav>
   );

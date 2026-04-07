@@ -21,7 +21,6 @@ function Dashboard({ userUsername, setIsLoggedIn }) {
           userUsername={userUsername}
           setIsLoggedIn={setIsLoggedIn}
         />
-
         <div className="dashboard-body">
           <SideBar />
           <div className="dashboard-content">
