@@ -5,6 +5,8 @@ import MovieCard from "../../components/movies/MovieCard";
 import Button from "../../components/general/Button";
 import "./dashboard.css";
 
+const PAGE_SIZE = 10;
+
 function HomePage() {
   const [movies, setMovies] = useState([]);
   const [minYear, setMinYear] = useState(1970);
@@ -13,10 +15,9 @@ function HomePage() {
   const [sort, setSort] = useState("Latest");
   const [title, setTitle] = useState("");
   const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
 
-  // 1. Move the API logic into the Effect
   useEffect(() => {
-    // Create an AbortController to cancel old requests if filters change quickly
     const controller = new AbortController();
 
     const fetchMovies = async () => {
@@ -35,11 +36,14 @@ function HomePage() {
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },
         });
-
+        const newMovies = response.data.titles;
         if (page === 1) {
-          setMovies(response.data.titles);
+          setMovies(newMovies);
         } else {
-          setMovies((prev) => [...prev, ...response.data.titles]);
+          setMovies((prev) => [...prev, ...newMovies]);
+        }
+        if (newMovies.length < PAGE_SIZE) {
+          setHasMore(false);
         }
       } catch (error) {
         if (axios.isCancel(error)) return;
@@ -49,17 +53,13 @@ function HomePage() {
 
     fetchMovies();
 
-    // Cleanup: cancel request if component unmounts or deps change
     return () => controller.abort();
-    
-    // 2. Include 'page' in the dependency array
   }, [minYear, maxYear, genres, title, sort, page]);
 
-  // 3. Simplified Handlers
-  // When filters change, we just reset page to 1. 
-  // The useEffect detects this change and triggers the fetch automatically.
+  // Reset pagination when filters change
   const handleFilterChange = (setter, value) => {
     setPage(1);
+    setHasMore(true);
     setter(value);
   };
 
@@ -88,7 +88,7 @@ function HomePage() {
         ))}
       </div>
 
-      {movies.length > 0 && (
+      {hasMore && movies.length > 0 && (
         <Button label="Load More.." onClick={handleLoadMore} />
       )}
     </div>
