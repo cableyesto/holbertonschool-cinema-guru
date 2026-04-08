@@ -13,14 +13,29 @@ function HomePage() {
   const [maxYear, setMaxYear] = useState(2022);
   const [genres, setGenres] = useState([]);
   const [sort, setSort] = useState("Latest");
+
+  // 🔹 Debounce states
   const [title, setTitle] = useState("");
+  const [debouncedTitle, setDebouncedTitle] = useState("");
+
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedTitle(title);
+      setPage(1);
+      setHasMore(true);
+    }, 500);
+    return () => clearTimeout(handler);
+  }, [title]);
 
   useEffect(() => {
     const controller = new AbortController();
 
     const fetchMovies = async () => {
+      setIsLoading(true);
       try {
         const response = await axios.get("/api/titles/advancedsearch", {
           signal: controller.signal,
@@ -28,7 +43,7 @@ function HomePage() {
             minYear,
             maxYear,
             genres: genres.join(","),
-            title,
+            title: debouncedTitle, // 🔥 use debounced value
             sort,
             page,
           },
@@ -36,27 +51,31 @@ function HomePage() {
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },
         });
+
         const newMovies = response.data.titles;
+
         if (page === 1) {
           setMovies(newMovies);
         } else {
           setMovies((prev) => [...prev, ...newMovies]);
         }
+
         if (newMovies.length < PAGE_SIZE) {
           setHasMore(false);
         }
       } catch (error) {
         if (axios.isCancel(error)) return;
         console.error("Error fetching movies:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchMovies();
 
     return () => controller.abort();
-  }, [minYear, maxYear, genres, title, sort, page]);
+  }, [minYear, maxYear, genres, debouncedTitle, sort, page]);
 
-  // Reset pagination when filters change
   const handleFilterChange = (setter, value) => {
     setPage(1);
     setHasMore(true);
@@ -79,7 +98,7 @@ function HomePage() {
         genres={genres}
         setGenres={(val) => handleFilterChange(setGenres, val)}
         title={title}
-        setTitle={(val) => handleFilterChange(setTitle, val)}
+        setTitle={setTitle}
       />
 
       <div className="movie-grid">
@@ -88,7 +107,7 @@ function HomePage() {
         ))}
       </div>
 
-      {hasMore && movies.length > 0 && (
+      {hasMore && movies.length > 0 && !isLoading && (
         <Button label="Load More.." onClick={handleLoadMore} />
       )}
     </div>
