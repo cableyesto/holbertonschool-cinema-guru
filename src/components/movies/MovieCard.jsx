@@ -62,25 +62,43 @@ function MovieCard({ movie }) {
     }
   };
 
+  const shortenSynopsis = (text, maxLength = 100) => {
+    if (!text || text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + "..";
+  };
+
+  const imageUrl = movie.imageurls && movie.imageurls.length > 0
+    ? movie.imageurls[0]
+    : null;
+
   return (
     <li className="movie-card">
-      <div className="movie-icons">
-        <FontAwesomeIcon
-          icon={faHeart}
-          className={`icon favorite ${isFavorite ? "active" : ""}`}
-          onClick={() => handleClick("favorite")}
-        />
-        <FontAwesomeIcon
-          icon={faClock}
-          className={`icon watchlater ${isWatchLater ? "active" : ""}`}
-          onClick={() => handleClick("watchlater")}
-        />
+      <div className="movie-image-container">
+        {imageUrl ? (
+          <img src={imageUrl} alt={movie.title} className="movie-image" />
+        ) : (
+          <div className="movie-image-placeholder" />
+        )}
+        <div className="movie-icons">
+          <FontAwesomeIcon
+            icon={faHeart}
+            className={`icon favorite ${isFavorite ? "active" : ""}`}
+            onClick={() => handleClick("favorite")}
+          />
+          <FontAwesomeIcon
+            icon={faClock}
+            className={`icon watchlater ${isWatchLater ? "active" : ""}`}
+            onClick={() => handleClick("watchlater")}
+          />
+        </div>
+        <div className="movie-title-bar">
+          <h4 className="movie-title">{movie.title}</h4>
+        </div>
       </div>
-      <h4 className="movie-title">{movie.title}</h4>
-      <p className="movie-synopsis">{movie.synopsis}</p>
+      <p className="movie-synopsis">{shortenSynopsis(movie.synopsis)}</p>
       <ul className="movie-genres">
         {movie.genres.map((g) => (
-          <li key={g} className="genre-tag">{g}</li>
+          <li key={g} className="genre-tag selected">{g}</li>
         ))}
       </ul>
     </li>

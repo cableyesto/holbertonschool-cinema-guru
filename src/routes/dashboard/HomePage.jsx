@@ -108,7 +108,9 @@ function HomePage() {
       </div>
 
       {hasMore && movies.length > 0 && !isLoading && (
-        <Button label="Load More.." onClick={handleLoadMore} />
+        <div className="load-more-container">
+          <Button label="Load More.." onClick={handleLoadMore} />
+        </div>
       )}
     </div>
   );

@@ -80,18 +80,16 @@ Favorites
 WatchLater
 **/
 .movie-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 300px); /* 5 fixed columns */
+  justify-content: center; /* centers the whole grid */
+  gap: 20px;
+}
+
+/** Homepage **/
+.load-more-container {
   display: flex;
-  flex-wrap: wrap;          /* Allows multiple rows */
-  justify-content: flex-start; /* Align full rows to start */
-  gap: 20px;                /* Fixed gap between items */
-  max-width: calc(5 * 200px + 4 * 20px); /* 5 items * item width + 4 gaps */
-  margin: 0 auto;           /* Center the whole container horizontally */
-}
-
-.movie-grid li {
-  flex: 0 0 200px;          /* Fixed width for each MovieCard */
-}
-
-.movie-grid li:last-row {
-  justify-content: center;  /* Center the last row if it has fewer items */
+  justify-content: center;
+  margin-top: 20px;
+  /* margin: 30px 0; */
 }
