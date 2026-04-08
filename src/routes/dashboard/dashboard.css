@@ -93,3 +93,30 @@ WatchLater
   margin-top: 20px;
   /* margin: 30px 0; */
 }
+
+/** Favorites **/
+.favorites-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center all children horizontally */
+}
+
+.favorites-title {
+  color: white;
+  font-size: 63px;       
+  font-weight: 400;      
+  position: relative;    
+  display: inline-block; 
+  margin-bottom: 20px;   
+  text-align: center;    /* Centers text inside the h1 */
+  width: auto;           /* Make width shrink to text content */
+}
+
+.favorites-title::after {
+  content: "";
+  display: block;
+  height: 5px;           
+  background-color: #E31C25; 
+  width: 100%;           /* This now matches the h1 text width */
+  margin-top: 8px;       
+}
