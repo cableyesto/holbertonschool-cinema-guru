@@ -14,60 +14,72 @@ function HomePage() {
   const [title, setTitle] = useState("");
   const [page, setPage] = useState(1);
 
-  // Function to load movies from the API
-  const loadMovies = async (pageToLoad = 1) => {
-    try {
-      const response = await axios.get("/api/titles/advancedsearch", {
-        params: {
-          minYear,
-          maxYear,
-          genre: genres.join(","), // Convert array to comma-separated string
-          title,
-          sort,
-          page: pageToLoad,
-        },
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
+  // 1. Move the API logic into the Effect
+  useEffect(() => {
+    // Create an AbortController to cancel old requests if filters change quickly
+    const controller = new AbortController();
 
-      // If loading first page, replace movies, else append
-      if (pageToLoad === 1) {
-        setMovies(response.data.titles);
-      } else {
-        setMovies((prev) => [...prev, ...response.data.titles]);
+    const fetchMovies = async () => {
+      try {
+        const response = await axios.get("/api/titles/advancedsearch", {
+          signal: controller.signal,
+          params: {
+            minYear,
+            maxYear,
+            genres: genres.join(","),
+            title,
+            sort,
+            page,
+          },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        });
+
+        if (page === 1) {
+          setMovies(response.data.titles);
+        } else {
+          setMovies((prev) => [...prev, ...response.data.titles]);
+        }
+      } catch (error) {
+        if (axios.isCancel(error)) return;
+        console.error("Error fetching movies:", error);
       }
-    } catch (error) {
-      console.error("Error fetching movies:", error);
-    }
+    };
+
+    fetchMovies();
+
+    // Cleanup: cancel request if component unmounts or deps change
+    return () => controller.abort();
+    
+    // 2. Include 'page' in the dependency array
+  }, [minYear, maxYear, genres, title, sort, page]);
+
+  // 3. Simplified Handlers
+  // When filters change, we just reset page to 1. 
+  // The useEffect detects this change and triggers the fetch automatically.
+  const handleFilterChange = (setter, value) => {
+    setPage(1);
+    setter(value);
   };
 
-  // Load movies on mount and whenever filters/sorting change
-  useEffect(() => {
-    setPage(1);
-    loadMovies(1);
-  }, [minYear, maxYear, genres, sort, title]);
-
-  // Handler for Load More button
   const handleLoadMore = () => {
-    const nextPage = page + 1;
-    setPage(nextPage);
-    loadMovies(nextPage);
+    setPage((prev) => prev + 1);
   };
 
   return (
     <div className="homepage-container">
       <Filter
         minYear={minYear}
-        setMinYear={setMinYear}
+        setMinYear={(val) => handleFilterChange(setMinYear, val)}
         maxYear={maxYear}
-        setMaxYear={setMaxYear}
+        setMaxYear={(val) => handleFilterChange(setMaxYear, val)}
         sort={sort}
-        setSort={setSort}
+        setSort={(val) => handleFilterChange(setSort, val)}
         genres={genres}
-        setGenres={setGenres}
+        setGenres={(val) => handleFilterChange(setGenres, val)}
         title={title}
-        setTitle={setTitle}
+        setTitle={(val) => handleFilterChange(setTitle, val)}
       />
 
       <div className="movie-grid">
